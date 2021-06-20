@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define('PROJECT_ROOT', preg_replace('/(nomo\-interface\/)(.*)/', 'nomo-interface/', __DIR__));
+define('PROJECT_ROOT', preg_replace('/(nomo\-interface\/)(.*)/', 'nomo-interface', __DIR__));
 
 require PROJECT_ROOT . '/vendor/autoload.php';
 include_once PROJECT_ROOT . '/config/ConfigSecret.php';
