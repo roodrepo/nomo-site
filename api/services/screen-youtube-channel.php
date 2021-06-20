@@ -53,7 +53,7 @@ if (count($youtubeLatestVideo) > 0){
     $messageTelegram = $youtubeLatestVideo['items'][0]['snippet']['title'] . "\n"
     . implode(", ", $tags_currency_video) . "\n"
     . "https://www.youtube.com/watch?v=" . $youtubeLatestVideo["items"][0]["id"]["videoId"]  . "\n\n"
-    . "/strat/coinbureau?quotes_content=" . implode(",", $tags_currency_video) . "\n\n";
+    . "http://localhost:8888/nomo-interface/interface/trigger-signal.php?quotes_content=" . implode(",", $tags_currency_video) . "\n\n";
 
     $sendTelegram = json_decode(file_get_contents('https://api.telegram.org/' . $ConfigSecret->getSetting('TELEGRAM_API_SECRET') . '/sendMessage?chat_id=' . $ConfigSecret->getSetting('TELEGRAM_CHATID') . '&text=' . urlencode($messageTelegram)), true);
 

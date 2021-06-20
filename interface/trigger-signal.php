@@ -1,0 +1,126 @@
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+define('PROJECT_ROOT', preg_replace('/(nomo\-interface\/)(.*)/', 'nomo-interface', __DIR__));
+
+require PROJECT_ROOT . '/vendor/autoload.php';
+include_once PROJECT_ROOT . '/config/ConfigSecret.php';
+
+$ConfigSecret = new ConfigSecret();
+
+$binance = new \ccxt\binance(array(
+    'apiKey' => $ConfigSecret->getSetting('BINANCE_API_KEY'), // replace with your keys
+    'secret' => $ConfigSecret->getSetting('BINANCE_API_SECRET'),
+));
+
+$portfolio           = ['BTC', 'USDT', 'BUSD', 'BNB', 'ETH', 'DOT', 'BAKE', 'ADA'];
+$portfolio           = ['BTC', 'USDT'];
+
+$balances = $binance->fetch_balance();
+$quotes = [];
+$quote_balances = array();
+foreach ($balances['info']['balances'] as $key => $value){
+
+//    echo '<p>'.$key.' '.$value.'</p>';
+    if (strpos($value['asset'], 'UP') === false && strpos($value['asset'], 'DOWN') === false && strpos($value['asset'], 'BULL') === false && strpos($value['asset'], 'BEAR') === false) {
+
+        if ($value['free'] > 0) {
+            $quote_balances[$value['asset']] = array(
+                'free' => $value['free'],
+                'locked' => $value['locked'],
+                'default_check' => in_array($value['asset'], $portfolio) ? true : false
+            );
+        }
+        $quotes[] = $value['asset'];
+    }
+}
+
+sort($quotes);
+ksort($quote_balances);
+
+$preset_select_values = array(
+    'select1'=> '',
+    'select2'=> '',
+    'select3'=> '',
+);
+if(isset($_GET['quotes_content'])){
+    $quote_url = explode(',', $_GET['quotes_content']);
+    $counti = count($quote_url);
+    $idx = 1;
+    for($i = 0; $i < $counti; $i++){
+        if(in_array($quote_url[$i], $quotes)){
+            $preset_select_values['select'.$idx] = $quote_url[$i];
+            $idx++;
+        }
+    }
+}
+?>
+
+<form action="" method="post">
+    <p><input name="enable_futures" type="checkbox" checked> Future Leverage: <input name="future_leverage" type="number" value="3" style="width: 40px">x</p>
+    <p><input name="enable_margin" type="checkbox" > Margin Isolated</p>
+    <p>Percentage Funds Allocated: <input name="fund_percentage" type="number" value="10" style="width: 40px">%</p>
+    <p>Side: <select name="side">
+        <option value="BUY">BUY</option>
+        <option value="SELL">SELL</option>
+    </select>
+    </p>
+    <p>Timeframe: <select name="timeframe">
+        <option value="1m">1m</option>
+        <option value="3m" selected>3m</option>
+        <option value="5m">5m</option>
+        <option value="15m">15m</option>
+        <option value="30m">30m</option>
+        <option value="1h">1h</option>
+        <option value="2h">2h</option>
+        <option value="4h">4h</option>
+        <option value="1d">1d</option>
+    </select>
+    </p>
+    <p></p>
+
+    <select name="trading_base_1">
+        <option></option>
+        <?php
+
+            foreach ($quotes as $quote) {
+                echo '<option value="'.$quote.'" '.($preset_select_values['select1'] == $quote ? 'selected' : '').'>'.$quote.'</option>';
+            }
+        ?>
+    </select>
+    <p></p>
+
+    <select name="trading_base_2">
+        <option></option>
+        <?php
+        foreach ($quotes as $quote) {
+            echo '<option value="'.$quote.'" '.($preset_select_values['select2'] == $quote ? 'selected' : '').'>'.$quote.'</option>';
+        }
+        ?>
+    </select>
+
+
+    <p></p>
+
+    <select name="trading_base_3">
+        <option></option>
+        <?php
+        foreach ($quotes as $quote) {
+            echo '<option value="'.$quote.'" '.($preset_select_values['select3'] == $quote ? 'selected' : '').'>'.$quote.'</option>';
+        }
+        ?>
+    </select>
+
+    <p></p>
+
+    <?php
+
+        foreach ($quote_balances as $quote => $value){
+            echo '<p><input type="checkbox" name="checkbox_quotes_'.$quote.'" '.($value['default_check'] == true ? 'checked' : '').'> '.$quote.': '.$value['free'].'</p>';
+        }
+    ?>
+
+    <button type="submit">Trade</button>
+</form>
