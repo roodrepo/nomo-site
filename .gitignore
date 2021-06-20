@@ -1,2 +1,4 @@
 vendor/
 config/ConfigSecret.php
+interface/.htaccess
+interface/.htpasswd
