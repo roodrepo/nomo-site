@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 define('PROJECT_ROOT', preg_replace('/(nomo\-interface\/)(.*)/', 'nomo-interface/', __DIR__));
 
@@ -23,7 +26,7 @@ $url_params = array(
     'maxResults=1',
     'regionCode=UK'
 );
-
+echo '<p>Checking</p>';
 $youtubeLatestVideo = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/search?'.implode('&', $url_params)), true);
 if (count($youtubeLatestVideo) > 0){
     $url_params = array(
@@ -57,6 +60,7 @@ if (count($youtubeLatestVideo) > 0){
 
     $callmebot = json_decode(file_get_contents('http://api.callmebot.com/start.php?user=@Roods13&text=' . implode(',', $tags_currency_video) . '&lang=en&rpt=4'), true);
 
+    echo '<p>Telegram Sent</p>';
 //    for key in balances.keys():
 //        if key == key.upper() and 'UP' not in key and 'DOWN' not in key and 'BULL' not in key and 'BEAR' not in key and key not in ignore_quotes:
 //            if key in videoInfo['items'][0]['snippet']['tags']:
