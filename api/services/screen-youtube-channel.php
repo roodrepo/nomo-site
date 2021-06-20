@@ -26,7 +26,6 @@ $url_params = array(
     'maxResults=1',
     'regionCode=UK'
 );
-echo '<p>Checking</p>';
 $youtubeLatestVideo = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/search?'.implode('&', $url_params)), true);
 if (count($youtubeLatestVideo) > 0){
     $url_params = array(
@@ -51,16 +50,17 @@ if (count($youtubeLatestVideo) > 0){
                 $tags_currency_video[] = $key;
     }
 
-    $messageTelegram = $youtubeLatestVideo['items'][0]['snippet']['title'] . '\n'
-    . implode(', ', $tags_currency_video) . '\n'
-    . 'https://www.youtube.com/watch?v=' . $youtubeLatestVideo['items'][0]['id']['videoId']  . '\n\n'
-    . '/strat/coinbureau?quotes_content=' . implode(',', $tags_currency_video) . '\n\n';
+    $messageTelegram = $youtubeLatestVideo['items'][0]['snippet']['title'] . "\n"
+    . implode(", ", $tags_currency_video) . "\n"
+    . "https://www.youtube.com/watch?v=" . $youtubeLatestVideo["items"][0]["id"]["videoId"]  . "\n\n"
+    . "/strat/coinbureau?quotes_content=" . implode(",", $tags_currency_video) . "\n\n";
 
     $sendTelegram = json_decode(file_get_contents('https://api.telegram.org/' . $ConfigSecret->getSetting('TELEGRAM_API_SECRET') . '/sendMessage?chat_id=' . $ConfigSecret->getSetting('TELEGRAM_CHATID') . '&text=' . urlencode($messageTelegram)), true);
 
-    $callmebot = json_decode(file_get_contents('http://api.callmebot.com/start.php?user=@Roods13&text=' . implode(',', $tags_currency_video) . '&lang=en&rpt=4'), true);
+    if(count($tags_currency_video) > 0) {
+        $callmebot = json_decode(file_get_contents('http://api.callmebot.com/start.php?user=@Roods13&text=' . implode(',', $tags_currency_video) . '&lang=en&rpt=4'), true);
+    }
 
-    echo '<p>Telegram Sent</p>';
 //    for key in balances.keys():
 //        if key == key.upper() and 'UP' not in key and 'DOWN' not in key and 'BULL' not in key and 'BEAR' not in key and key not in ignore_quotes:
 //            if key in videoInfo['items'][0]['snippet']['tags']:
