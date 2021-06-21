@@ -56,6 +56,15 @@ if(isset($_GET['quotes_content'])){
         }
     }
 }
+
+if(isset($_POST['timeframe'])){
+    print_r($_POST);
+    $command = escapeshellcmd('python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py --trading_bases="CAKE,1INCH"');
+    echo '<p>'.$command.'</p>';
+    $output = shell_exec($command);
+    echo $output;
+}
+
 ?>
 
 <form action="" method="post">
