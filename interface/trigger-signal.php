@@ -87,11 +87,10 @@ if(isset($_POST['timeframe'])){
         $params[] = '--trading_quotes="'.implode(',', $trading_quotes).'"';
 
 
-    $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params));
-//    $output = shell_exec($command);
+    $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params).' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
+    $output = shell_exec($command);
     echo $command;
 
-    die();
 }
 
 ?>
