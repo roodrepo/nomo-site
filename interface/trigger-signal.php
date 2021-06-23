@@ -88,12 +88,13 @@ if(isset($_POST['timeframe'])){
 
 
     $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params));
-    $exec_cmd = 'echo "'.date("Y-m-d h:i").'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log';
+//    $exec_cmd = 'echo "'.date("Y-m-d h:i").'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log';
 //    $exec_cmd = 'echo "'.date("Y-m-d h:i").' '.addslashes($command).'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1';
-    $test_out = shell_exec($exec_cmd);
-    echo '<p>'.$test_out.'</p>';
-    $output = shell_exec($command.' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
-    echo '<p>'.$exec_cmd.'</p>';
+//    $test_out = shell_exec($exec_cmd);
+//    echo '<p>'.$test_out.'</p>';
+//    $output = shell_exec($command.' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
+    $output = shell_exec($command);
+//    echo '<p>'.$exec_cmd.'</p>';
     echo $command;
 
 }
