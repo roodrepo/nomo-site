@@ -57,21 +57,50 @@ if(isset($_GET['quotes_content'])){
     }
 }
 
+
+
+
 if(isset($_POST['timeframe'])){
-    print_r($_POST);
-    $command = escapeshellcmd('python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py --trading_bases="CAKE,1INCH"');
-    echo '<p>'.$command.'</p>';
+    $params = array();
+    $trading_bases = array();
+    $trading_quotes = array();
+
+    foreach ($_POST as $input => $value){
+        if(in_array($input, ['futures_enabled', 'margin_enabled']) && $value == 'on'){
+            $params[] = '--'.$input;
+        }
+        elseif (in_array($input, ['future_leverage', 'fund_percentage', 'timeframe', 'trade_side'])){
+            $params[] = '--'.$input.'="'.$value.'"';
+        }
+        elseif(strpos($input, 'trading_base_') !== false && $value != ''){
+            $trading_bases[] = $value;
+        }
+        elseif(strpos($input, 'checkbox_quotes_') !== false && $value == 'on'){
+            $trading_quotes[] = str_replace('checkbox_quotes_', '', $input);
+        }
+    }
+
+    if(count($trading_bases) > 0)
+        $params[] = '--trading_bases="'.implode(',', $trading_bases).'"';
+
+    if(count($trading_quotes) > 0)
+        $params[] = '--trading_quotes="'.implode(',', $trading_quotes).'"';
+
+
+    $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params));
     $output = shell_exec($command);
-    echo $output;
+    echo $command;
+
+    die();
 }
 
 ?>
 
 <form action="" method="post">
-    <p><input name="enable_futures" type="checkbox" checked> Future Leverage: <input name="future_leverage" type="number" value="3" style="width: 40px">x</p>
-    <p><input name="enable_margin" type="checkbox" > Margin Isolated</p>
-    <p>Percentage Funds Allocated: <input name="fund_percentage" type="number" value="10" style="width: 40px">%</p>
-    <p>Side: <select name="side">
+    <p><input name="futures_enabled" type="checkbox" checked> Future Leverage: <input name="future_leverage" type="number" value="3" style="width: 40px">x</p>
+    <p><input name="margin_enabled" type="checkbox" > Margin Isolated</p>
+    <p>Percentage Funds Allocated: <input name="fund_percentage" type="number" value="0.1" style="width: 40px"></p>
+    <p>Side: <select name="trade_side">
         <option value="BUY">BUY</option>
         <option value="SELL">SELL</option>
     </select>
