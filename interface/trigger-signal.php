@@ -88,7 +88,7 @@ if(isset($_POST['timeframe'])){
 
 
     $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params));
-    $output = shell_exec($command);
+//    $output = shell_exec($command);
     echo $command;
 
     die();
