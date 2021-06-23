@@ -88,8 +88,10 @@ if(isset($_POST['timeframe'])){
 
 
     $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params).' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
-    shell_exec('echo "'.date("Y-m-d h:i").' '.$command.'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
+    $exec_cmd = 'echo "'.date("Y-m-d h:i").' '.$command.'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1';
+    shell_exec($exec_cmd);
     $output = shell_exec($command);
+    echo '<p>'.$exec_cmd.'</p>';
     echo $command;
 
 }
