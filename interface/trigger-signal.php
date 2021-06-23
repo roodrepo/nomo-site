@@ -58,8 +58,6 @@ if(isset($_GET['quotes_content'])){
 }
 
 
-
-
 if(isset($_POST['timeframe'])){
     $params = array();
     $trading_bases = array();
