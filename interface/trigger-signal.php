@@ -87,10 +87,11 @@ if(isset($_POST['timeframe'])){
         $params[] = '--trading_quotes="'.implode(',', $trading_quotes).'"';
 
 
-    $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params).' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
+    $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params));
     $exec_cmd = 'echo "'.date("Y-m-d h:i").' '.$command.'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1';
-    shell_exec($exec_cmd);
-    $output = shell_exec($command);
+    $test_out = shell_exec($exec_cmd);
+    echo '<p>'.$test_out.'</p>';
+    $output = shell_exec($command.' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
     echo '<p>'.$exec_cmd.'</p>';
     echo $command;
 
