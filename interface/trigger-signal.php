@@ -69,7 +69,7 @@ if(isset($_POST['timeframe'])){
         if(in_array($input, ['futures_enabled', 'margin_enabled']) && $value == 'on'){
             $params[] = '--'.$input;
         }
-        elseif (in_array($input, ['future_leverage', 'fund_percentage', 'timeframe', 'trade_side'])){
+        elseif (in_array($input, ['future_leverage', 'fund_percentage', 'timeframe', 'trade_side', 'stoploss_atr'])){
             $params[] = '--'.$input.'="'.$value.'"';
         }
         elseif(strpos($input, 'trading_base_') !== false && $value != ''){
@@ -105,6 +105,7 @@ if(isset($_POST['timeframe'])){
     <p><input name="futures_enabled" type="checkbox" checked> Future Leverage: <input name="future_leverage" type="number" value="3" style="width: 40px">x</p>
     <p><input name="margin_enabled" type="checkbox" > Margin Isolated</p>
     <p>Percentage Funds Allocated: <input name="fund_percentage" type="text" value="0.05" style="width: 50px"></p>
+    <p>Stoploss ATR: <input name="stoploss_atr" type="text" value="1" style="width: 50px"></p>
     <p>Side: <select name="trade_side">
         <option value="BUY">BUY</option>
         <option value="SELL">SELL</option>
