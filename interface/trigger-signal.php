@@ -88,6 +88,7 @@ if(isset($_POST['timeframe'])){
 
 
     $command = (PROJECT_ROOT.'/../nomo-ccxt/venv/bin/python '.PROJECT_ROOT.'/../nomo-ccxt/nomo/Services/EnterPosition.py '.implode(' ', $params).' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
+    shell_exec('echo "'.date("Y-m-d h:i").' '.$command.'" >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
     $output = shell_exec($command);
     echo $command;
 
@@ -98,7 +99,7 @@ if(isset($_POST['timeframe'])){
 <form action="" method="post">
     <p><input name="futures_enabled" type="checkbox" checked> Future Leverage: <input name="future_leverage" type="number" value="3" style="width: 40px">x</p>
     <p><input name="margin_enabled" type="checkbox" > Margin Isolated</p>
-    <p>Percentage Funds Allocated: <input name="fund_percentage" type="number" value="0.1" style="width: 40px"></p>
+    <p>Percentage Funds Allocated: <input name="fund_percentage" type="text" value="0.05" style="width: 50px"></p>
     <p>Side: <select name="trade_side">
         <option value="BUY">BUY</option>
         <option value="SELL">SELL</option>
