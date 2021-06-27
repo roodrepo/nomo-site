@@ -34,8 +34,7 @@ if (count($youtubeLatestVideo) > 0){
         'id=' . $youtubeLatestVideo['items'][0]['id']['videoId'],
     );
 
-    $videoInfo = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/videos?' . implode('&', $url_params), true));
-
+    $videoInfo = json_decode(file_get_contents('https://www.googleapis.com/youtube/v3/videos?' . implode('&', $url_params)), true);
     $tags_currency_video = array();
 
     $ignore_quotes = ["BUSD", "USDC", "EURO", "TUSD", "GBP", "EUR", "XZC", "AUD", "AED", "BRL", "CAD", "CHF", "CZK",
@@ -45,7 +44,7 @@ if (count($youtubeLatestVideo) > 0){
 
     $balances = $binance->fetch_balance();
     foreach ($balances as $key => $value){
-        if ($key == strtoupper($key) && strpos($key, 'UP') !== false && strpos($key, 'DOWN') !== false && strpos($key, 'BULL') !== false && strpos($key, 'BEAR') !== false)
+        if ($key == strtoupper($key) && strpos($key, 'UP') === false && strpos($key, 'DOWN') === false && strpos($key, 'BULL') === false && strpos($key, 'BEAR') === false)
             if(in_array($key, $videoInfo['items'][0]['snippet']['tags']))// key in videoInfo['items'][0]['snippet']['tags']:
                 $tags_currency_video[] = $key;
     }
