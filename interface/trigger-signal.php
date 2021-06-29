@@ -7,6 +7,7 @@ define('PROJECT_ROOT', preg_replace('/(nomo\-interface\/)(.*)/', 'nomo-interface
 
 require PROJECT_ROOT . '/vendor/autoload.php';
 include_once PROJECT_ROOT . '/config/ConfigSecret.php';
+include_once PROJECT_ROOT . '/include/Functions.php';
 
 $ConfigSecret = new ConfigSecret();
 
@@ -45,6 +46,14 @@ $preset_select_values = array(
     'select2'=> '',
     'select3'=> '',
 );
+
+if(isset($_GET['coinbureau'])){
+    $videoInfo = checkCoinBureauLastVideo($ConfigSecret, $binance->fetch_balance());
+    if($videoInfo != null)
+        $_GET['quotes_content'] = implode(',', $videoInfo['quotes']);
+}
+
+
 if(isset($_GET['quotes_content'])){
     $quote_url = explode(',', $_GET['quotes_content']);
     $counti = count($quote_url);
