@@ -19,6 +19,8 @@ $binance = new \ccxt\binance(array(
 $portfolio           = ['BTC', 'USDT', 'BUSD', 'BNB', 'ETH', 'DOT', 'BAKE', 'ADA'];
 $portfolio           = ['BTC', 'USDT'];
 
+
+
 $balances = $binance->fetch_balance();
 $quotes = [];
 $quote_balances = array();
@@ -47,20 +49,27 @@ $preset_select_values = array(
     'select3'=> '',
 );
 
+$quotes_content = array();
+
 if(isset($_GET['coinbureau'])){
     $videoInfo = checkCoinBureauLastVideo($ConfigSecret, $binance->fetch_balance());
+
     if($videoInfo != null)
-        $_GET['quotes_content'] = implode(',', $videoInfo['quotes']);
+        $quotes_content = $videoInfo['quotes'];
 }
 
+elseif(isset($_GET['quotes_content'])) {
+    $quotes_content = explode(',', $_GET['quotes_content']);
+}
 
-if(isset($_GET['quotes_content'])){
-    $quote_url = explode(',', $_GET['quotes_content']);
-    $counti = count($quote_url);
+print_r($quotes_content);
+if(count($quotes_content) > 0){
+    $counti = count($quotes_content);
     $idx = 1;
+
     for($i = 0; $i < $counti; $i++){
-        if(in_array($quote_url[$i], $quotes)){
-            $preset_select_values['select'.$idx] = $quote_url[$i];
+        if(in_array($quotes_content[$i], $quotes)){
+            $preset_select_values['select'.$idx] = $quotes_content[$i];
             $idx++;
         }
     }
@@ -100,7 +109,7 @@ if(isset($_POST['timeframe'])){
 //    $test_out = shell_exec($exec_cmd);
 //    echo '<p>'.$test_out.'</p>';
 //    $output = shell_exec($command.' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
-        $output = shell_exec($command);
+        $output = shell_exec($command . ' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
 //    echo '<p>'.$exec_cmd.'</p>';
         echo $command;
     }
