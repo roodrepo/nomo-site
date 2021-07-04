@@ -120,7 +120,7 @@ if(isset($_POST['timeframe'])){
 
 <form action="" method="post">
     <p><input name="futures_enabled" type="checkbox" checked> Future Leverage: <input name="future_leverage" type="number" value="3" style="width: 40px">x</p>
-    <p><input name="margin_enabled" type="checkbox" > Margin Isolated</p>
+    <p><input name="margin_enabled" type="checkbox" checked > Margin Isolated</p>
     <p>Percentage Funds Allocated: <input name="fund_percentage" type="text" value="0.05" style="width: 50px"></p>
     <p>Stoploss ATR: <input name="stoploss_atr" type="text" value="1" style="width: 50px"></p>
     <p>Side: <select name="trade_side">
