@@ -62,7 +62,6 @@ elseif(isset($_GET['quotes_content'])) {
     $quotes_content = explode(',', $_GET['quotes_content']);
 }
 
-print_r($quotes_content);
 if(count($quotes_content) > 0){
     $counti = count($quotes_content);
     $idx = 1;
