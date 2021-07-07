@@ -50,6 +50,7 @@ $preset_select_values = array(
 );
 
 $quotes_content = array();
+$selectHAsValue = false;
 
 if(isset($_GET['coinbureau'])){
     $videoInfo = checkCoinBureauLastVideo($ConfigSecret, $binance->fetch_balance());
@@ -68,6 +69,7 @@ if(count($quotes_content) > 0){
 
     for($i = 0; $i < $counti; $i++){
         if(in_array($quotes_content[$i], $quotes)){
+            $selectHAsValue = true;
             $preset_select_values['select'.$idx] = $quotes_content[$i];
             $idx++;
         }
@@ -183,5 +185,5 @@ if(isset($_POST['timeframe'])){
         }
     ?>
 
-    <button type="submit">Trade</button>
+    <button type="submit" <?php echo isset($_GET['coinbureau']) && $selectHAsValue == false ? 'disabled' : '';?>>Trade</button>
 </form>
