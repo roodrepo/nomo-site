@@ -57,6 +57,7 @@ if(isset($_GET['coinbureau'])){
 
     if($videoInfo != null)
         $quotes_content = $videoInfo['quotes'];
+        echo '<p>Video Title: '.$videoInfo['title'].'</p>';
 }
 
 elseif(isset($_GET['quotes_content'])) {
@@ -64,7 +65,7 @@ elseif(isset($_GET['quotes_content'])) {
 }
 
 if(count($quotes_content) > 0){
-    echo '<p>Video Title: '.$quotes_content['title'].'</p>';
+
     $counti = count($quotes_content);
     $idx = 1;
 
