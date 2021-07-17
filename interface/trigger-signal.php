@@ -112,8 +112,12 @@ if(isset($_POST['timeframe'])){
 //    $test_out = shell_exec($exec_cmd);
 //    echo '<p>'.$test_out.'</p>';
 //    $output = shell_exec($command.' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
-        $output = shell_exec($command . ' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
+
 //    echo '<p>'.$exec_cmd.'</p>';
+
+
+
+//        $output = shell_exec($command . ' >> '.PROJECT_ROOT.'/../nomo-ccxt/logs/EnterPosition.log 2>&1');
         echo $command;
     }
 
