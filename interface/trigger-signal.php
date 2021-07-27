@@ -49,30 +49,30 @@ $preset_select_values = array(
     'select3'=> '',
 );
 
-$quotes_content = array();
+$bases_content = array();
 $selectHAsValue = false;
 
 if(isset($_GET['coinbureau'])){
     $videoInfo = checkCoinBureauLastVideo($ConfigSecret, $binance->fetch_balance());
 
     if($videoInfo != null)
-        $quotes_content = $videoInfo['quotes'];
+        $bases_content = $videoInfo['quotes'];
         echo '<p>Video Title: '.$videoInfo['title'].'</p>';
 }
 
-elseif(isset($_GET['quotes_content'])) {
-    $quotes_content = explode(',', $_GET['quotes_content']);
+elseif(isset($_GET['bases_content'])) {
+    $bases_content = explode(',', $_GET['bases_content']);
 }
 
-if(count($quotes_content) > 0){
+if(count($bases_content) > 0){
 
-    $counti = count($quotes_content);
+    $counti = count($bases_content);
     $idx = 1;
 
     for($i = 0; $i < $counti; $i++){
-        if(in_array($quotes_content[$i], $quotes)){
+        if(in_array($bases_content[$i], $quotes)){
             $selectHAsValue = true;
-            $preset_select_values['select'.$idx] = $quotes_content[$i];
+            $preset_select_values['select'.$idx] = $bases_content[$i];
             $idx++;
         }
     }
