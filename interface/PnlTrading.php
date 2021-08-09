@@ -7,10 +7,12 @@
 </header>
 <body>
 
+
+
 <div id="clock-wrapper"></div>
 
-<input id="dateFrom" value="2021-08-01" class="refreshTable myDatePicker">
-<input id="dateTo" value="2021-08-09" class="refreshTable myDatePicker">
+<input id="dateFrom" value="<?php echo gmdate("Y-m-d"); ?>" class="refreshTable myDatePicker">
+<input id="dateTo" value="<?php echo gmdate("Y-m-d"); ?>" class="refreshTable myDatePicker">
 <select id="dateType" class="refreshTable">
     <option value="Open" selected>Open</option>
     <option value="Close">Close</option>
@@ -45,6 +47,7 @@
     <option value="Month">Month</option>
     <option value="Week">Week</option>
     <option value="Day">Day</option>
+    <option value="Hour">Hour</option>
 </select>
 
 
@@ -94,6 +97,7 @@
                 "dataType": "json",
                 "type": 'POST',
                 "data": function(d){
+
                     d.dateFrom          = $('#dateFrom').val();
                     d.dateTo            = $('#dateTo').val();
                     d.dateType          = $('#dateType').val();
@@ -142,7 +146,7 @@
         function setDatetime(){
             var date = new Date();
             $('#clock-wrapper').html(
-                date.getUTCFullYear() + "-" + date.getUTCMonth() + "-" + date.getUTCDate() + " " +date.getUTCHours() + ":" + date.getUTCMinutes()
+                date.getUTCFullYear() + "-" + (parseInt(date.getUTCMonth()) + 1 ) + "-" + date.getUTCDate() + " " +date.getUTCHours() + ":" + date.getUTCMinutes()
             );
         }
 
