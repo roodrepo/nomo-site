@@ -90,8 +90,8 @@
         <thead>
         <tr>
             <th>Pair</th>
-            <th>Date open</th>
-            <th>Date close</th>
+            <th class="date_col">Date open</th>
+            <th class="date_col">Date close</th>
             <th>Side</th>
             <th>Timeframe</th>
             <th>Leverage</th>
