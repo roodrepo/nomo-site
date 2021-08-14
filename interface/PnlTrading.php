@@ -21,8 +21,7 @@
 
 <div id="clock-wrapper"></div>
 
-<!--<input id="dateFrom" value="--><?php //echo gmdate("Y-m-d"); ?><!--" class="refreshTable myDatePicker">-->
-<input id="dateFrom" value="2021-08-01" class="refreshTable myDatePicker">
+<input id="dateFrom" value="<?php echo gmdate("Y-m-d"); ?>" class="refreshTable myDatePicker">
 <input id="dateTo" value="<?php echo gmdate("Y-m-d"); ?>" class="refreshTable myDatePicker">
 <select id="dateType" class="refreshTable">
     <option value="Open" selected>Open</option>
@@ -190,6 +189,7 @@
             "pageLength": 100,
         } );
 
+        var ignoreTradeAjaxRequest = true;
 
         var tradeTable = $('#trade').DataTable( {
             "ajax": {
@@ -213,6 +213,7 @@
                     d.filterStrategy    = filters['filterStrategy'].join('|');
                     d.filterTimeframe   = filters['filterTimeframe'].join('|');
                     d.filterPair        = filters['filterPair'].join('|');
+                    d.ignore            = ignoreTradeAjaxRequest
                 }
             },
             "searching": false,
@@ -296,7 +297,7 @@
 
         $( ".myDatePicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
         $( ".refreshTable" ).change( function() {
-
+            ignoreTradeAjaxRequest = false
 
             if($('#groupBy').val() == 'Trade'){
                 $('#tradeContainer').removeClass('hidden');
