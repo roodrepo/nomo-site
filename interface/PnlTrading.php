@@ -76,8 +76,8 @@
             <th>Hold. Time avg</th>
             <th>Win Hold. Time avg</th>
             <th>Loss Hold. Time avg</th>
-            <th>Drawdown avg</th>
-            <th>Updraw avg</th>
+            <th>MAE avg</th>
+            <th>MFE avg</th>
             <th>% Biggest loss</th>
             <th>% Biggest win</th>
         </tr>
@@ -103,8 +103,8 @@
             <th># Fee</th>
             <th>% Fee</th>
             <th>Amount open</th>
-            <th>% Drawdown</th>
-            <th>% Updraw</th>
+            <th>% MAE</th>
+            <th>% MFE</th>
         </tr>
         </thead>
     </table>
