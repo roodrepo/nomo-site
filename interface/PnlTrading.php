@@ -44,7 +44,7 @@
 
 
 <select id="groupBy" class="refreshTable">
-    <option value="Pair" selected>Pair</option>
+    <option value="Pair" >Pair</option>
     <option value="Timeframe">Timeframe</option>
     <option value="Strategy">Strategy</option>
     <option value="Leverage">Leverage</option>
@@ -56,7 +56,7 @@
     <option value="Quarter">Quarter</option>
     <option value="Month">Month</option>
     <option value="Week">Week</option>
-    <option value="Day">Day</option>
+    <option value="Day" selected>Day</option>
     <option value="Hour">Hour</option>
     <option value="Trade">Trade</option>
 </select>
