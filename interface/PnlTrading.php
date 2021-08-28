@@ -67,6 +67,8 @@
         <tr>
             <th>Showname</th>
             <th>Profit Factor</th>
+            <th>Sharpe Ratio</th>
+            <th>Sortino Ratio</th>
             <th>% Profit avg</th>
             <th>% Win Profit avg</th>
             <th>% Loss Profit avg</th>
@@ -171,6 +173,8 @@
             "columns": [
                 { "data": "showname" },
                 { "data": "perc_profit_factor" },
+                { "data": "sharpe_ratio" },
+                { "data": "sortino_ratio" },
                 { "data": "avg_profit_perc" },
                 { "data": "avg_profit_perc_win" },
                 { "data": "avg_profit_perc_loss" },
