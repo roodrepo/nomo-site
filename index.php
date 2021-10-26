@@ -826,16 +826,16 @@
                     <div class="col-md-8">
                         <p class="mb-0">© Nomo all Rights Reserved</p>
                     </div>
-                    <div class="col-md-4">
-                        <div class="social-media">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-youtube"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+<!--                    <div class="col-md-4">-->
+<!--                        <div class="social-media">-->
+<!--                            <ul>-->
+<!--                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>-->
+<!--                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>-->
+<!--                                <li><a href="javascript:void(0)"><i class="fa fa-instagram"></i></a></li>-->
+<!--                                <li><a href="javascript:void(0)"><i class="fa fa-youtube"></i></a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
