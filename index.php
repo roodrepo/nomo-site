@@ -279,10 +279,10 @@
                             </div>
                             <p>Tokens will remain fully locked up for one year. The lockup and transfer restrictions begin at the moment of token generation, making sure pre-launch backers, team members, and the early community are on equal footing.</p>
                             <ul class="mt-30">
-                                <li><span class="color1"></span>29% Ecosystem Development</li>
+                                <li><span class="color1"></span>24% Ecosystem Development</li>
                                 <li><span class="color2"></span>18% Development Team</li>
                                 <li><span class="color3"></span>13% Community Sales</li>
-                                <li><span class="color4"></span>29% Nomo Labs</li>
+                                <li><span class="color4"></span>25% Nomo Labs</li>
                                 <li><span class="color5"></span>20% Early investors</li>
                             </ul>
                         </div>
@@ -291,10 +291,10 @@
                 <div class="col-lg-6 align-right center-md">
                     <div class="token-graph">
                         <div class='donut'>
-                            <div data-lcolor="#f8c04e">29</div>
+                            <div data-lcolor="#f8c04e">24</div>
                             <div data-lcolor="#ac56f7">18</div>
                             <div data-lcolor="#61f89f">13</div>
-                            <div data-lcolor="#5ad6f8">29</div>
+                            <div data-lcolor="#5ad6f8">25</div>
                             <div data-lcolor="#f85d77">20</div>
                         </div>
                         <div class="graph-logo">
