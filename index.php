@@ -776,7 +776,7 @@
                                 </div>
                                 <div class="contact-box-detail">
                                     <h3 class="contact-title">Email</h3>
-                                    <p>mail.nomobot@gmail.com/p>
+                                    <p>mail.nomobot@gmail.com</p>
                                 </div>
                             </li>
                             <li>
