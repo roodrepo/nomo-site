@@ -793,22 +793,23 @@
                 </div>
                 <div class="col-md-8">
                     <div class="form-detail">
-                        <form>
+                        <form id="contact_form">
                             <div class="row">
                                 <div class="col-xs-12 col-md">
-                                    <input type="text" class="form-control" placeholder="Name" required>
+                                    <input id="contact_name"  type="text" class="form-control" placeholder="Name" required>
                                 </div>
                                 <div class="col-xs-12 col-md">
                                     <input type="text" class="form-control" placeholder="Email" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Subject" required>
+                                <input id="contact_subject" type="text" class="form-control" placeholder="Subject" required>
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" rows="3" placeholder="Message" required></textarea>
+                                <textarea id="contact_content" class="form-control" rows="3" placeholder="Message" required></textarea>
                             </div>
                             <button type="submit" class="btn-white">Send Message</button>
+                            <a style="display: none" id="send_mail" href="#"></a>
                         </form>
                     </div>
                 </div>
@@ -857,6 +858,16 @@
                 offset: 50
             });
         },500);
+
+        $("#contact_form").submit(function(e){
+            e.preventDefault();
+
+
+            $("#send_mail").attr("href", "mailto:mail.nomobot@gmail.com?subject=" + $("#contact_subject").val() + "&body=" + $("#contact_content").val() + "%0D%0A%0D%0A" + $("#contact_name").val());
+            $("#send_mail")[0].click();
+
+        });
+
     })
 </script>
 
